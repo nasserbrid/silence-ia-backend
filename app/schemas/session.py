@@ -28,6 +28,8 @@ class AnalyzeRequest(BaseModel):
     images: list[str] = []
     audio_stats: dict = {}
     visual_stats: dict = {}
+    prenom: str = ""
+    last_score: int | None = None
 
 
 class AnalyzeResponse(BaseModel):
