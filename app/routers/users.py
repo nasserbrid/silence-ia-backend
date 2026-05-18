@@ -8,7 +8,7 @@ from app.services.user import UserService, get_user_service
 router = APIRouter(prefix="/admin/users", tags=["admin"])
 
 
-@router.get("/", response_model=list[UserRead])
+@router.get("", response_model=list[UserRead])
 def get_all(
     svc: UserService = Depends(get_user_service),
     _: User = Depends(get_admin_user),
@@ -16,7 +16,7 @@ def get_all(
     return svc.get_all()
 
 
-@router.post("/", response_model=UserRead, status_code=201)
+@router.post("", response_model=UserRead, status_code=201)
 def create(
     data: UserCreate,
     svc: UserService = Depends(get_user_service),

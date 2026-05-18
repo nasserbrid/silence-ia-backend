@@ -8,7 +8,7 @@ from app.services.session import SessionService, get_session_service
 router = APIRouter(prefix="/api/history", tags=["history"])
 
 
-@router.get("/", response_model=list[SessionRead])
+@router.get("", response_model=list[SessionRead])
 def get_history(
     current_user: User = Depends(get_current_user),
     svc: SessionService = Depends(get_session_service),
@@ -16,7 +16,7 @@ def get_history(
     return svc.get_by_user(current_user.id)
 
 
-@router.post("/", response_model=SessionRead, status_code=201)
+@router.post("", response_model=SessionRead, status_code=201)
 def save_session(
     data: SessionCreate,
     current_user: User = Depends(get_current_user),

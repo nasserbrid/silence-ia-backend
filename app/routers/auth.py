@@ -7,8 +7,9 @@ from app.core.limiter import limiter
 from app.database import get_db
 from app.models.user import User
 from app.schemas.auth import LoginRequest, Token
-from app.schemas.user import UserRead
+from app.schemas.user import UserPasswordUpdate, UserRead, UserUpdate
 from app.services.auth import AuthService, get_auth_service, get_current_user
+from app.services.user import UserService, get_user_service
 
 logger = logging.getLogger(__name__)
 
@@ -35,3 +36,13 @@ def login(
 @router.get("/me", response_model=UserRead)
 def me(current_user: User = Depends(get_current_user)):
     return current_user
+
+
+@router.patch("/me", response_model=UserRead)
+def update_my_password(
+    data: UserPasswordUpdate,
+    current_user: User = Depends(get_current_user),
+    user_svc: UserService = Depends(get_user_service),
+):
+    logger.info("Changement de mot de passe : %s", current_user.email)
+    return user_svc.update(current_user.id, UserUpdate(password=data.password))

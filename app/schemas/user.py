@@ -18,6 +18,10 @@ class UserUpdate(BaseModel):
     is_active: bool | None = None
 
 
+class UserPasswordUpdate(BaseModel):
+    password: str
+
+
 class UserRead(UserBase):
     id: int
     role: str
