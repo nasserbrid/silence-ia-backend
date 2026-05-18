@@ -1,0 +1,28 @@
+# Secrets
+.env
+
+# Claude Code
+CLAUDE.md
+
+# Python
+__pycache__/
+*.py[oc]
+*.egg-info
+build/
+dist/
+wheels/
+
+# Environnement virtuel
+.venv/
+
+# Base de données locale
+*.db
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
