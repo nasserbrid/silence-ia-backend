@@ -38,7 +38,7 @@ def me(current_user: User = Depends(get_current_user)):
     return current_user
 
 
-@router.patch("/me", response_model=UserRead)
+@router.post("/me/password", response_model=UserRead)
 def update_my_password(
     data: UserPasswordUpdate,
     current_user: User = Depends(get_current_user),
