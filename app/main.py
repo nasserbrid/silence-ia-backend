@@ -8,7 +8,7 @@ from app.core.limiter import limiter
 from app.core.logging import setup_logging
 from app.database import Base, engine
 from app.models import user, session  # noqa: F401 — force table registration
-from app.routers import auth, users, analyze, history
+from app.routers import auth, users, analyze, history, transcribe
 
 setup_logging()
 settings.validate()
@@ -36,6 +36,7 @@ app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(analyze.router)
 app.include_router(history.router)
+app.include_router(transcribe.router)
 
 
 @app.get("/health", tags=["system"])
